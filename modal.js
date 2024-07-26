@@ -38,3 +38,13 @@ function validateName(inputValue) {
   }
 }
 
+// Validate email 
+function validateEmail(inputValue) {
+  let regex = /^([a-z0-9_\.-]+\@[\da-z\.-]+\.[a-z\.]{2,6})$/;
+  if (inputValue !== null) {
+    return regex.test(inputValue);
+  } else {
+    return false;
+  }
+}
+
