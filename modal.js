@@ -13,13 +13,13 @@ const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 
 // Form inputs 
-const name = document.getElementById("name");
+const fistName = document.getElementById("name");
 const lastName = document.getElementById("lastName");
 const email = document.getElementById("email");
 const birthdate = document.getElementById("birthdate");
 const quantity = document.getElementById("quantity");
-const location = document.querySelectorAll("checkbox-input[type=radio]");
-const checkboxInput = document.getElementById("checkbox1");
+const ubication = document.querySelectorAll("checkbox-input[type=radio]");
+const conditions = document.getElementById("checkbox1").checked;
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
@@ -27,5 +27,14 @@ modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 // launch modal form
 function launchModal() {
   modalbg.style.display = "block";
+}
+
+// Validate name and last name
+function validateName(inputValue) {
+  if (inputValue !== null && inputValue.length > 2) {
+    return inputValue;
+  } else {
+    return false;
+  }
 }
 
