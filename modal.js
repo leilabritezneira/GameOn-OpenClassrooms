@@ -58,3 +58,14 @@ function validateQuantity(inputValue) {
   }
 }
 
+// Validate location 
+function validateLocation(inputValue) {
+  for(let radio of inputValue){
+    if(radio.checked === true) {
+      return inputValue;
+    } else {
+      return false;
+    }
+  }
+}
+
