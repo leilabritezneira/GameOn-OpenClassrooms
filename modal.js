@@ -48,3 +48,13 @@ function validateEmail(inputValue) {
   }
 }
 
+// Validate quantity 
+function validateQuantity(inputValue) {
+  let regex = /^[0-9]+$/;
+  if (inputValue !== null) {
+    return regex.test(inputValue);
+  } else {
+    return false;
+  }
+}
+
