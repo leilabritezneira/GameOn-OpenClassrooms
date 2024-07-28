@@ -69,3 +69,13 @@ function validateLocation(inputValue) {
   }
 }
 
+// Validate condition
+function validateCondition(inputValue) {
+  if (inputValue !== null) {
+    return inputValue;
+  } else {
+    return false;
+  }
+}
+
+
