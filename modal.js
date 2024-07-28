@@ -79,3 +79,13 @@ function validateCondition(inputValue) {
 }
 
 
+// Form validation
+function validate() {
+  validateName(fistName);
+  validateName(lastName);
+  validateEmail(email);
+  validateQuantity(quantity);
+  validateLocation(ubication);
+  validateCondition(conditions)
+  console.log(fistName, lastName, email, quantity, conditions)
+}
