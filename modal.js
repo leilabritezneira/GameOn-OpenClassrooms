@@ -48,6 +48,15 @@ function validateEmail(inputValue) {
   }
 }
 
+// Validate birthdate
+function validateBirthdate(inputValue) {
+  if (inputValue !== null) {
+    return inputValue;
+  } else {
+    return false;
+  }
+}
+
 // Validate quantity 
 function validateQuantity(inputValue) {
   let regex = /^[0-9]+$/;
@@ -84,6 +93,7 @@ function validate() {
   validateName(fistName);
   validateName(lastName);
   validateEmail(email);
+  validateBirthdate(birthdate);
   validateQuantity(quantity);
   validateLocation(ubication);
   validateCondition(conditions)
