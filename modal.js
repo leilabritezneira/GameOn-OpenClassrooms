@@ -13,13 +13,13 @@ const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 
 // Form inputs 
-const name = document.getElementById("name");
+const fistName = document.getElementById("name");
 const lastName = document.getElementById("lastName");
 const email = document.getElementById("email");
 const birthdate = document.getElementById("birthdate");
 const quantity = document.getElementById("quantity");
-const location = document.querySelectorAll("checkbox-input[type=radio]");
-const checkboxInput = document.getElementById("checkbox1");
+const ubication = document.querySelectorAll("checkbox-input[type=radio]");
+const conditions = document.getElementById("checkbox1").checked;
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
@@ -29,3 +29,73 @@ function launchModal() {
   modalbg.style.display = "block";
 }
 
+// Validate name and last name
+function validateName(inputValue) {
+  if (inputValue !== null && inputValue.length > 2) {
+    return inputValue;
+  } else {
+    return false;
+  }
+}
+
+// Validate email 
+function validateEmail(inputValue) {
+  let regex = /^([a-z0-9_\.-]+\@[\da-z\.-]+\.[a-z\.]{2,6})$/;
+  if (inputValue !== null) {
+    return regex.test(inputValue);
+  } else {
+    return false;
+  }
+}
+
+// Validate birthdate
+function validateBirthdate(inputValue) {
+  if (inputValue !== null) {
+    return inputValue;
+  } else {
+    return false;
+  }
+}
+
+// Validate quantity 
+function validateQuantity(inputValue) {
+  let regex = /^[0-9]+$/;
+  if (inputValue !== null) {
+    return regex.test(inputValue);
+  } else {
+    return false;
+  }
+}
+
+// Validate location 
+function validateLocation(inputValue) {
+  for(let radio of inputValue){
+    if(radio.checked === true) {
+      return inputValue;
+    } else {
+      return false;
+    }
+  }
+}
+
+// Validate condition
+function validateCondition(inputValue) {
+  if (inputValue !== null) {
+    return inputValue;
+  } else {
+    return false;
+  }
+}
+
+
+// Form validation
+function validate() {
+  validateName(fistName);
+  validateName(lastName);
+  validateEmail(email);
+  validateBirthdate(birthdate);
+  validateQuantity(quantity);
+  validateLocation(ubication);
+  validateCondition(conditions)
+  console.log(fistName, lastName, email, quantity, conditions)
+}
