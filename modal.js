@@ -103,6 +103,6 @@ function validate(event) {
 
 		if (isValid) {
       console.log(isValid);
-			//event.submit();
+			event.submit();
 		}
 }
