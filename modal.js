@@ -18,8 +18,8 @@ const lastName = document.getElementById("lastName");
 const email = document.getElementById("email");
 const birthdate = document.getElementById("birthdate");
 const quantity = document.getElementById("quantity");
-const ubication = document.querySelectorAll("checkbox-input[type=radio]");
-const conditions = document.getElementById("checkbox1").checked;
+const ubication = document.querySelectorAll("input[type=radio][name='location']");
+const conditions = document.getElementById("conditions");
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
@@ -32,7 +32,7 @@ function launchModal() {
 // Validate name and last name
 function validateName(inputValue) {
   if (inputValue !== null && inputValue.length > 2) {
-    return inputValue;
+    return true;
   } else {
     return false;
   }
@@ -51,7 +51,7 @@ function validateEmail(inputValue) {
 // Validate birthdate
 function validateBirthdate(inputValue) {
   if (inputValue !== null) {
-    return inputValue;
+    return true;
   } else {
     return false;
   }
@@ -67,21 +67,20 @@ function validateQuantity(inputValue) {
   }
 }
 
-// Validate location 
-function validateLocation(inputValue) {
-  for(let radio of inputValue){
-    if(radio.checked === true) {
-      return inputValue;
-    } else {
-      return false;
+function validateLocation() {
+  const radios = document.querySelectorAll("input[name='location']");
+  for (let radio of radios) {
+    if (radio.checked) {
+      return true;
     }
   }
+  return false;
 }
 
 // Validate condition
 function validateCondition(inputValue) {
   if (inputValue !== null) {
-    return inputValue;
+    return true;
   } else {
     return false;
   }
@@ -89,13 +88,21 @@ function validateCondition(inputValue) {
 
 
 // Form validation
-function validate() {
-  validateName(fistName);
-  validateName(lastName);
-  validateEmail(email);
-  validateBirthdate(birthdate);
-  validateQuantity(quantity);
-  validateLocation(ubication);
-  validateCondition(conditions)
-  console.log(fistName, lastName, email, quantity, conditions)
+function validate(event) {
+  event.preventDefault();
+
+  let isValid = false;
+		if (validateName(fistName.value) && validateName(lastName.value) && validateEmail(email.value) && 
+        validateBirthdate(birthdate.value) && validateQuantity(quantity.value) && validateLocation() && validateCondition(conditions.value)) {
+			isValid = true;
+      console.log(isValid);
+		} else {
+			isValid = false;
+      console.log(isValid);
+		}
+
+		if (isValid) {
+      console.log(isValid);
+			//event.submit();
+		}
 }
