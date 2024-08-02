@@ -332,6 +332,21 @@ input[data-error]::after {
   cursor: pointer;
   border: 0;
 }
+
+.confirm-modal {
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: space-between;
+  align-items: center;
+}
+.confirm-modal h2 {
+  margin: 75px;
+  padding-bottom: 175px;
+}
+
 /* custom select styles */
 .custom-select {
   position: relative;
