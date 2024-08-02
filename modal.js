@@ -11,6 +11,8 @@ function editNav() {
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
+const confirmModal = document.querySelector(".confirm-modal");
+const form = document.querySelector(".form");
 
 // Form inputs 
 const fistName = document.getElementById("name");
@@ -27,6 +29,7 @@ modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 // launch modal form
 function launchModal() {
   modalbg.style.display = "block";
+  confirmModal.style.display = "none";
 }
 
 // Validate name and last name
@@ -103,6 +106,10 @@ function validate(event) {
 
 		if (isValid) {
       console.log(isValid);
-			event.submit();
+			//event.submit();
+
+      // Show confirm modal
+      form.style.display = "none";
+      confirmModal.style.display = "block";
 		}
 }
