@@ -34,9 +34,20 @@ function launchModal() {
 
 // Validate name and last name
 function validateName(inputValue) {
-  if (inputValue !== null && inputValue.length > 2) {
+
+    const parentElement = inputValue.closest('.formData');
+  if (inputValue.value.trim().length >= 2) {
+    parentElement.setAttribute('data-error-visible', 'false');
     return true;
   } else {
+
+    if (inputValue.value.length >= 1 && inputValue.value.length <= 2 ) {
+      parentElement.setAttribute('data-error-visible', 'true');
+      parentElement.setAttribute('data-error', 'Veuillez entrer 2 caractères ou plus pour le champ du ' + inputValue.name);
+    } else {
+      parentElement.setAttribute('data-error-visible', 'true');
+      parentElement.setAttribute('data-error', 'Ce champ est obligatoire ');
+    }
     return false;
   }
 }
@@ -95,7 +106,7 @@ function validate(event) {
   event.preventDefault();
 
   let isValid = false;
-		if (validateName(fistName.value) && validateName(lastName.value) && validateEmail(email.value) && 
+		if (validateName(fistName) && validateName(lastName.value) && validateEmail(email.value) && 
         validateBirthdate(birthdate.value) && validateQuantity(quantity.value) && validateLocation() && validateCondition(conditions.value)) {
 			isValid = true;
       console.log(isValid);
