@@ -54,10 +54,18 @@ function validateName(inputValue) {
 
 // Validate email 
 function validateEmail(inputValue) {
+  const parentElement = inputValue.closest('.formData');
   let regex = /^([a-z0-9_\.-]+\@[\da-z\.-]+\.[a-z\.]{2,6})$/;
-  if (inputValue !== null) {
-    return regex.test(inputValue);
+
+  if (regex.test(inputValue.value.trim())) {
+    parentElement.setAttribute('data-error-visible', 'false');
+    return true;
   } else {
+
+    if (!regex.test(inputValue)){
+      parentElement.setAttribute('data-error-visible', 'true');
+      parentElement.setAttribute('data-error', 'Veuillez entrer un email valide');
+    } 
     return false;
   }
 }
@@ -106,7 +114,7 @@ function validate(event) {
   event.preventDefault();
 
   let isValid = false;
-		if (validateName(fistName) && validateName(lastName.value) && validateEmail(email.value) && 
+		if (validateName(fistName) && validateName(lastName) && validateEmail(email) && 
         validateBirthdate(birthdate.value) && validateQuantity(quantity.value) && validateLocation() && validateCondition(conditions.value)) {
 			isValid = true;
       console.log(isValid);
