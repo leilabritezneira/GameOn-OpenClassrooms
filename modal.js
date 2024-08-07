@@ -44,6 +44,7 @@ function validateName(inputValue) {
     if (inputValue.value.length >= 1 && inputValue.value.length <= 2 ) {
       parentElement.setAttribute('data-error-visible', 'true');
       parentElement.setAttribute('data-error', 'Veuillez entrer 2 caractères ou plus pour le champ du ' + inputValue.name);
+    
     } else {
       parentElement.setAttribute('data-error-visible', 'true');
       parentElement.setAttribute('data-error', 'Ce champ est obligatoire ');
@@ -60,6 +61,7 @@ function validateEmail(inputValue) {
   if (regex.test(inputValue.value.trim())) {
     parentElement.setAttribute('data-error-visible', 'false');
     return true;
+    
   } else {
 
     if (!regex.test(inputValue)){
@@ -71,10 +73,29 @@ function validateEmail(inputValue) {
 }
 
 // Validate birthdate
-function validateBirthdate(inputValue) {
-  if (inputValue !== null) {
+function validateBirthdate(inputElement) {
+  const parentElement = inputElement.closest('.formData');
+  const birthdate = new Date(inputElement.value);
+  const today = new Date()
+  const age = today.getFullYear() - birthdate.getFullYear();
+  const monthDifference = today.getMonth() - birthdate.getMonth();
+
+  if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < birthdate.getDate())) {
+    age--;
+  }
+
+  if (inputElement.value == "" || inputElement.value == null){
+    parentElement.setAttribute('data-error-visible', 'true');
+    parentElement.setAttribute('data-error', 'Vous devez entrer votre date de naissance');
+    return false;
+
+  } else if (age >= 18 && age <= 100) {
+    parentElement.setAttribute('data-error-visible', 'false');
     return true;
+
   } else {
+    parentElement.setAttribute('data-error-visible', 'true');
+    parentElement.setAttribute('data-error', 'Vous devez avoir entre 18 et 100 ans');
     return false;
   }
 }
@@ -115,7 +136,7 @@ function validate(event) {
 
   let isValid = false;
 		if (validateName(fistName) && validateName(lastName) && validateEmail(email) && 
-        validateBirthdate(birthdate.value) && validateQuantity(quantity.value) && validateLocation() && validateCondition(conditions.value)) {
+        validateBirthdate(birthdate) && validateQuantity(quantity.value) && validateLocation() && validateCondition(conditions.value)) {
 			isValid = true;
       console.log(isValid);
 		} else {
