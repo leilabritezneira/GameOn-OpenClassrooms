@@ -102,17 +102,23 @@ function validateBirthdate(inputElement) {
 
 // Validate quantity 
 function validateQuantity(inputValue) {
+  const parentElement = inputValue.closest('.formData');
   let regex = /^[0-9]+$/;
-  if (inputValue !== null) {
-    return regex.test(inputValue);
-  } else {
+
+  if (inputValue.value == null || inputValue.value == "") {
+    parentElement.setAttribute('data-error-visible', 'true');
+    parentElement.setAttribute('data-error', 'Vous devez entrer la quantité');
     return false;
+
+  } else {
+    parentElement.setAttribute('data-error-visible', 'false');
+    return regex.test(inputValue.value);
   }
 }
 
 function validateLocation() {
-  const radios = document.querySelectorAll("input[name='location']");
-  for (let radio of radios) {
+  //const radios = document.querySelectorAll("input[name='location']");
+  for (let radio of ubication) {
     if (radio.checked) {
       return true;
     }
@@ -136,7 +142,7 @@ function validate(event) {
 
   let isValid = false;
 		if (validateName(fistName) && validateName(lastName) && validateEmail(email) && 
-        validateBirthdate(birthdate) && validateQuantity(quantity.value) && validateLocation() && validateCondition(conditions.value)) {
+        validateBirthdate(birthdate) && validateQuantity(quantity) && validateLocation() && validateCondition(conditions)) {
 			isValid = true;
       console.log(isValid);
 		} else {
