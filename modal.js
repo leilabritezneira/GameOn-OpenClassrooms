@@ -116,13 +116,23 @@ function validateQuantity(inputValue) {
   }
 }
 
+// Validate Location
 function validateLocation() {
-  //const radios = document.querySelectorAll("input[name='location']");
+  let parentElement = null;
+
   for (let radio of ubication) {
+    if (!parentElement) {
+      parentElement = radio.closest('.formData');
+    }
+
     if (radio.checked) {
+      parentElement.setAttribute('data-error-visible', 'false');
       return true;
     }
   }
+
+  parentElement.setAttribute('data-error-visible', 'true');
+  parentElement.setAttribute('data-error', 'Vous devez choisir une option');
   return false;
 }
 
@@ -141,8 +151,8 @@ function validate(event) {
   event.preventDefault();
 
   let isValid = false;
-		if (validateName(fistName) && validateName(lastName) && validateEmail(email) && 
-        validateBirthdate(birthdate) && validateQuantity(quantity) && validateLocation() && validateCondition(conditions)) {
+		if ( /*validateName(fistName) && validateName(lastName) && validateEmail(email) && 
+        validateBirthdate(birthdate) && validateQuantity(quantity) &&*/  validateLocation() && validateCondition(conditions)) {
 			isValid = true;
       console.log(isValid);
 		} else {
