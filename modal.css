@@ -89,9 +89,7 @@ img {
   }
 }
 
-
-
- @media screen and (max-width: 540px) {
+@media screen and (max-width: 540px) {
   .topnav a {display: none;}
   .topnav a.icon {
     float: right;
@@ -110,8 +108,6 @@ main {
   margin: 1px 20px 15px;
   border-radius: 2rem;
   text-align: justify;
-
-
 }
 
 .modal-btn {
@@ -171,7 +167,7 @@ main {
 .content {
   margin: 5% auto;
   width: 100%;
-  max-width: 500px;
+  max-width: 504px;
   animation-name: modalopen;
   animation-duration: var(--modal-duration);
   background: #232323;

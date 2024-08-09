@@ -34,57 +34,119 @@ function launchModal() {
 
 // Validate name and last name
 function validateName(inputValue) {
-  if (inputValue !== null && inputValue.length > 2) {
+
+    const parentElement = inputValue.closest('.formData');
+  if (inputValue.value.trim().length >= 2) {
+    parentElement.setAttribute('data-error-visible', 'false');
     return true;
   } else {
+
+    if (inputValue.value.length >= 1 && inputValue.value.length <= 2 ) {
+      parentElement.setAttribute('data-error-visible', 'true');
+      parentElement.setAttribute('data-error', 'Veuillez entrer 2 caractères ou plus pour le champ du ' + inputValue.name);
+    
+    } else {
+      parentElement.setAttribute('data-error-visible', 'true');
+      parentElement.setAttribute('data-error', 'Ce champ est obligatoire ');
+    }
     return false;
   }
 }
 
 // Validate email 
 function validateEmail(inputValue) {
+  const parentElement = inputValue.closest('.formData');
   let regex = /^([a-z0-9_\.-]+\@[\da-z\.-]+\.[a-z\.]{2,6})$/;
-  if (inputValue !== null) {
-    return regex.test(inputValue);
+
+  if (regex.test(inputValue.value.trim())) {
+    parentElement.setAttribute('data-error-visible', 'false');
+    return true;
+    
   } else {
+
+    if (!regex.test(inputValue)){
+      parentElement.setAttribute('data-error-visible', 'true');
+      parentElement.setAttribute('data-error', 'Veuillez entrer un email valide');
+    } 
     return false;
   }
 }
 
 // Validate birthdate
-function validateBirthdate(inputValue) {
-  if (inputValue !== null) {
+function validateBirthdate(inputElement) {
+  const parentElement = inputElement.closest('.formData');
+  const birthdate = new Date(inputElement.value);
+  const today = new Date()
+  const age = today.getFullYear() - birthdate.getFullYear();
+  const monthDifference = today.getMonth() - birthdate.getMonth();
+
+  if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < birthdate.getDate())) {
+    age--;
+  }
+
+  if (inputElement.value == "" || inputElement.value == null){
+    parentElement.setAttribute('data-error-visible', 'true');
+    parentElement.setAttribute('data-error', 'Vous devez entrer votre date de naissance');
+    return false;
+
+  } else if (age >= 18 && age <= 100) {
+    parentElement.setAttribute('data-error-visible', 'false');
     return true;
+
   } else {
+    parentElement.setAttribute('data-error-visible', 'true');
+    parentElement.setAttribute('data-error', 'Vous devez avoir entre 18 et 100 ans');
     return false;
   }
 }
 
 // Validate quantity 
 function validateQuantity(inputValue) {
+  const parentElement = inputValue.closest('.formData');
   let regex = /^[0-9]+$/;
-  if (inputValue !== null) {
-    return regex.test(inputValue);
-  } else {
+
+  if (inputValue.value == null || inputValue.value == "") {
+    parentElement.setAttribute('data-error-visible', 'true');
+    parentElement.setAttribute('data-error', 'Vous devez entrer la quantité');
     return false;
+
+  } else {
+    parentElement.setAttribute('data-error-visible', 'false');
+    return regex.test(inputValue.value);
   }
 }
 
+// Validate Location
 function validateLocation() {
-  const radios = document.querySelectorAll("input[name='location']");
-  for (let radio of radios) {
+  let parentElement = null;
+
+  for (let radio of ubication) {
+    if (!parentElement) {
+      parentElement = radio.closest('.formData');
+    }
+
     if (radio.checked) {
+      parentElement.setAttribute('data-error-visible', 'false');
       return true;
     }
   }
+
+  parentElement.setAttribute('data-error-visible', 'true');
+  parentElement.setAttribute('data-error', 'Vous devez choisir une option');
   return false;
 }
 
 // Validate condition
-function validateCondition(inputValue) {
-  if (inputValue !== null) {
+function validateCondition() {
+  const inputElement = document.getElementById("conditions");
+  const parentElement = inputElement.closest('.formData');
+
+  if (inputElement.checked) {
+    parentElement.setAttribute('data-error-visible', 'false');
     return true;
   } else {
+    parentElement.setAttribute('data-error-visible', 'true');
+    parentElement.setAttribute('data-error', 'Vous devez vérifier que vous acceptez les termes et conditions');
     return false;
   }
 }
@@ -95,8 +157,8 @@ function validate(event) {
   event.preventDefault();
 
   let isValid = false;
-		if (validateName(fistName.value) && validateName(lastName.value) && validateEmail(email.value) && 
-        validateBirthdate(birthdate.value) && validateQuantity(quantity.value) && validateLocation() && validateCondition(conditions.value)) {
+		if ( /*validateName(fistName) && validateName(lastName) && validateEmail(email) && 
+        validateBirthdate(birthdate) && validateQuantity(quantity) &&*/  validateLocation() && validateCondition()) {
 			isValid = true;
       console.log(isValid);
 		} else {

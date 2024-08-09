@@ -59,11 +59,11 @@
             <form name="reserve" class="form" action="index.html" method="get" onsubmit="return validate(event);" >
               <div class="formData">
                 <label for="name">Prénom <span>*</span> </label> <br>
-                <input class="text-control" type="text" id="name" name="name" autocomplete="on" /><br>
+                <input class="text-control" type="text" id="name" name="prénom" autocomplete="on" /><br>
               </div>
               <div class="formData">
                 <label for="lastName">Nom <span>*</span> </label> <br>
-                <input class="text-control" type="text" id="lastName" name="lastName" /><br>
+                <input class="text-control" type="text" id="lastName" name="nom" autocomplete="on" /><br>
               </div>
               <div class="formData">
                 <label for="email">E-mail <span>*</span> </label> <br>
@@ -77,7 +77,7 @@
                 <label for="quantity">À combien de tournois GameOn avez-vous déjà participé ?</label> <br>
                 <input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99">
               </div>
-              <p class="text-label">A quel tournoi souhaitez-vous participer cette année ?</p>
+              <p class="text-label">A quel tournoi souhaitez-vous participer cette année ?<span>*</span> </p>
               <div class="formData">
                 <input class="checkbox-input" type="radio" id="location1" name="location" value="New York" />
                 <label class="checkbox-label" for="location1">
@@ -115,14 +115,12 @@
                 <label class="checkbox2-label" for="conditions" required>
                   <span class="checkbox-icon"></span>
                   J'ai lu et accepté les conditions d'utilisation.
-                </label>
-                <br>
+                </label> <br>
                 <input class="checkbox-input" type="checkbox" name="checkbox2" id="newsteller" />
                 <label class="checkbox2-label" for="newsteller">
                   <span class="checkbox-icon"></span>
                   Je souhaite être prévenu des prochains évènements.
-                </label>
-                <br>
+                </label> <br>
               </div>
               <input class="btn-submit" type="submit" class="button" value="C'est parti" />
             </form>
