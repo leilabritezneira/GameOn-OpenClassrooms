@@ -137,10 +137,16 @@ function validateLocation() {
 }
 
 // Validate condition
-function validateCondition(inputValue) {
-  if (inputValue !== null) {
+function validateCondition() {
+  const inputElement = document.getElementById("conditions");
+  const parentElement = inputElement.closest('.formData');
+
+  if (inputElement.checked) {
+    parentElement.setAttribute('data-error-visible', 'false');
     return true;
   } else {
+    parentElement.setAttribute('data-error-visible', 'true');
+    parentElement.setAttribute('data-error', 'Vous devez vérifier que vous acceptez les termes et conditions');
     return false;
   }
 }
@@ -152,7 +158,7 @@ function validate(event) {
 
   let isValid = false;
 		if ( /*validateName(fistName) && validateName(lastName) && validateEmail(email) && 
-        validateBirthdate(birthdate) && validateQuantity(quantity) &&*/  validateLocation() && validateCondition(conditions)) {
+        validateBirthdate(birthdate) && validateQuantity(quantity) &&*/  validateLocation() && validateCondition()) {
 			isValid = true;
       console.log(isValid);
 		} else {
