@@ -34,8 +34,7 @@ function launchModal() {
 
 // Validate name and last name
 function validateName(inputValue) {
-
-    const parentElement = inputValue.closest('.formData');
+  const parentElement = inputValue.closest('.formData');
   if (inputValue.value.trim().length >= 2) {
     parentElement.setAttribute('data-error-visible', 'false');
     return true;
@@ -174,4 +173,9 @@ function validate(event) {
       form.style.display = "none";
       confirmModal.style.display = "block";
 		}
+}
+
+// close modal 
+function closeModal() {
+  modalbg.style.display = "none";
 }
