@@ -156,17 +156,14 @@ function validate(event) {
   event.preventDefault();
 
   let isValid = false;
-		if ( /*validateName(fistName) && validateName(lastName) && validateEmail(email) && 
-        validateBirthdate(birthdate) && validateQuantity(quantity) &&*/  validateLocation() && validateCondition()) {
+		if ( validateName(fistName) && validateName(lastName) && validateEmail(email) && 
+        validateBirthdate(birthdate) && validateQuantity(quantity) &&  validateLocation() && validateCondition()) {
 			isValid = true;
-      console.log(isValid);
 		} else {
 			isValid = false;
-      console.log(isValid);
 		}
 
 		if (isValid) {
-      console.log(isValid);
 			//event.submit();
 
       // Show confirm modal
