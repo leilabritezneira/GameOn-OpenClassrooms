@@ -150,26 +150,33 @@ function validateCondition() {
   }
 }
 
-
-// Form validation
+// Form global validation
 function validate(event) {
   event.preventDefault();
 
-  let isValid = false;
-		if ( validateName(fistName) && validateName(lastName) && validateEmail(email) && 
-        validateBirthdate(birthdate) && validateQuantity(quantity) &&  validateLocation() && validateCondition()) {
-			isValid = true;
-		} else {
-			isValid = false;
-		}
-
-		if (isValid) {
-			//event.submit();
-
-      // Show confirm modal
+    const validations = [
+      () => validateName(fistName),
+      () => validateName(lastName),
+      () => validateEmail(email),
+      () => validateBirthdate(birthdate),
+      () => validateQuantity(quantity),
+      validateLocation,
+      validateCondition
+    ];
+  
+    let isValid = true;
+  
+    for (let validateFunc of validations) {
+      if (!validateFunc()) {
+        isValid = false;
+      }
+    }
+  
+    // Show confirm modal
+    if (isValid) {
       form.style.display = "none";
       confirmModal.style.display = "block";
-		}
+    }
 }
 
 // close modal 
