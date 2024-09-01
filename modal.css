@@ -184,7 +184,7 @@ main {
 
 label {
   font-family: var(--font-default);
-  font-size: 17px;
+  font-size: 14px;
   font-weight: normal;
   display: inline-block;
   margin-bottom: 11px;
@@ -238,7 +238,7 @@ input[data-error]::after {
   display: block;
   width: 20px;
   height: 20px;
-  border: 2px solid #279e7a;
+  border: 1px solid #ffff;
   border-radius: 50%;
   text-indent: 29px;
   white-space: nowrap;
@@ -246,6 +246,11 @@ input[data-error]::after {
   left: -30px;
   top: -1px;
   transition: 0.3s;
+}
+.checkbox-input:checked + .checkbox-label .checkbox-icon.location {
+  width: 20px;
+  height: 20px;
+  border: 1px solid #279e7a;
 }
 .checkbox-label .checkbox-icon::after,
 .checkbox2-label .checkbox-icon::after {
@@ -411,7 +416,7 @@ input[data-error]::after {
 /* custom select end */
 .text-label {
   font-weight: normal;
-  font-size: 16px;
+  font-size: 14px;
 }
 .hero-section {
   min-height: 88vh;
@@ -488,9 +493,17 @@ footer {
   .bground {
     margin-top: 60px;
   }
+  .content {
+    padding: 0px;
+  }
+  .modal-body {
+    padding: 0px 5%;
+    margin-bottom: 50px; 
+  }
   .hero-section {
     display: block;
     box-shadow: unset;
+    min-height: 84vh;
   }
   .hero-content {
     background: #fff;
@@ -518,12 +531,32 @@ footer {
   }
   .hero-section > .btn-signup {
     display: block;
-    margin: 32px auto 10px;
-    padding: 12px 35px;
+    margin: 25px auto 10px;
+    font-size: 14px;
+    padding: 10px 40px;
+  }
+  .btn-submit {
+    padding: 10px 50px;
+    font-size: 14px;
+  }
+  label { 
+    font-size: 13px;
+  }
+  .text-control {
+    font-size: 18px;
+    height: 45px;
+  }
+  .checkbox-label, .checkbox2-label {
+    margin-left: 30px;
+    margin-bottom: 0px;
+  }
+  #checkForm{
+    margin-bottom: 10px;
   }
   .copyrights {
     margin-top: 0px;
     text-align: center;
+    font-size: 10px;
   }
   main {
     padding: 0px 5px;
