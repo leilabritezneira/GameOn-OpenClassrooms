@@ -485,6 +485,9 @@ footer {
   margin: 0 10px;
 }
 @media screen and (max-width: 800px) {
+  .bground {
+    margin-top: 60px;
+  }
   .hero-section {
     display: block;
     box-shadow: unset;
