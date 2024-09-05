@@ -489,6 +489,8 @@ input[data-error]::after {
 footer {
   margin: 0 10px;
 }
+/* Mobile responsive */
+
 @media screen and (max-width: 800px) {
   .bground {
     margin-top: 60px;
@@ -562,6 +564,7 @@ footer {
     padding: 0px 5px;
   }
 }
+/* Modal animation */
 
 @keyframes modalopen {
   from {
